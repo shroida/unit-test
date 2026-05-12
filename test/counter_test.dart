@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:unit_widget_test/counter.dart';
+import 'package:unit_widget_test/features/counter.dart';
 
 void main(){
   group('Test Counter Increnment and Decrenment', (){
