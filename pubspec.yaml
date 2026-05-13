@@ -39,6 +39,7 @@ dependencies:
   test: ^1.30.0
   mockito: ^5.6.4
   build_runner: ^2.15.0
+  http: ^1.6.0
 
 dev_dependencies:
 
