@@ -1,13 +1,17 @@
 class TimeHelper {
-  static String getTimeOfTheDay() {
-    final hour = DateTime.now().hour;
+
+  static String getTimeOfTheDay({DateTime? dateTime}) {
+
+    final hour = dateTime?.hour ?? DateTime(2026, 1, 1, 19).hour;
 
     if (hour >= 5 && hour < 12) {
       return "Morning";
-    }  else if (hour >= 17 && hour < 21) {
+    } else if (hour >= 17 && hour < 21) {
       return "Evening";
     } else {
       return "Night";
     }
+
   }
-} 
+
+}
