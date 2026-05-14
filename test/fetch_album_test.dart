@@ -13,13 +13,37 @@ void main() {
     final mockClient = MockClient();
 
     when(mockClient.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1')))
-        .thenAnswer((_) async => http.Response(
-              '{"userId": 1, "id": 1, "title": "test"}',
+        .thenAnswer((_) async {
+          return http.Response(
+              '{"userId": 1, "id": 125, "title": "test"}',
               200,
-            ));
+            );
+        });
 
     final album = await fetchAlbum(mockClient);
-
+    expect(await fetchAlbum(mockClient), isA<Album>());
     expect(album.title, "test");
+    expect(album.id, 125);
+    expect(album.userId, 1);
   });
+
+
+
+group('Fetch Album during exeptions', (){
+  test('Throws an exception if the http call completes with an error', () async {
+    final mockClient = MockClient();
+
+    when(mockClient.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1')))
+        .thenAnswer((_) async {
+          return http.Response('Not Found', 404);
+        });
+
+    expect(await fetchAlbum(mockClient), throwsException);
+    expect(
+  () => fetchAlbum(mockClient),
+  throwsException,
+);
+});
+ });
+
 }
