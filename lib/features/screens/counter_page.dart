@@ -25,43 +25,45 @@ class _CounterPageState extends State<CounterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Counter Page'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Counter Value',
-              style: TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              '$counter',
-              style: const TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Counter Page'),
+          centerTitle: true,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Counter Value',
+                style: TextStyle(fontSize: 24),
               ),
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: decrementCounter,
-                  child: const Icon(Icons.remove),
+              const SizedBox(height: 20),
+              Text(
+                '$counter',
+                style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: incrementCounter,
-                  child: const Icon(Icons.add),
-                ),
-              ],
-            )
-          ],
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: decrementCounter,
+                    child: const Icon(Icons.remove),
+                  ),
+                  const SizedBox(width: 20),
+                  ElevatedButton(
+                    onPressed: incrementCounter,
+                    child: const Icon(Icons.add),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
