@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CounterPage extends StatefulWidget {
@@ -10,85 +9,94 @@ class CounterPage extends StatefulWidget {
 
 class _CounterPageState extends State<CounterPage> {
   int counter = 0;
-  TextEditingController counterController = TextEditingController();
+  final TextEditingController counterController = TextEditingController();
 
   void incrementCounter() {
     setState(() {
       counter++;
+      counterController.text = counter.toString();
     });
   }
 
   void decrementCounter() {
     setState(() {
       counter--;
+      counterController.text = counter.toString();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Counter Page'),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                key: const ValueKey('counterTextField'),
-                controller: counterController,
-                decoration: const InputDecoration(
-                  labelText: 'Enter Counter Value',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.number,
-                onChanged: (value) {
-                  setState(() {
-                    counter = int.tryParse(value) ?? 0;
-                  });
-                },
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Counter Page'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              key: const ValueKey('counterTextField'),
+              controller: counterController,
+              decoration: const InputDecoration(
+                labelText: 'Enter Counter Value',
+                border: OutlineInputBorder(),
               ),
-              const SizedBox(height: 30),
-              ElevatedButton(onPressed: (){
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
                 setState(() {
-                 counterController.text = (counter + 1).toString();
-                 counter = int.tryParse(counterController.text) ?? counter;
+                  counter = int.tryParse(value) ?? 0;
                 });
-              }, child: Text('Add')),
-              const Text(
-                'Counter Value',
-                style: TextStyle(fontSize: 24),
+              },
+            ),
+
+            const SizedBox(height: 30),
+
+            ElevatedButton(
+              onPressed: () {
+                incrementCounter();
+              },
+              child: const Text('Add'),
+            ),
+
+            const SizedBox(height: 20),
+
+            const Text(
+              'Counter Value',
+              style: TextStyle(fontSize: 24),
+            ),
+
+            const SizedBox(height: 10),
+
+            Text(
+              '$counter',
+              key: const ValueKey('counterValue'),
+              style: const TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(height: 20),
-              Text(
-                '$counter',
-                style: const TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
+            ),
+
+            const SizedBox(height: 30),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: decrementCounter,
+                  child: const Icon(Icons.remove),
                 ),
-              ),
-              const SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: decrementCounter,
-                    child: const Icon(Icons.remove),
-                  ),
-                  const SizedBox(width: 20),
-                  ElevatedButton(
-                    onPressed: incrementCounter,
-                    child: const Icon(Icons.add),
-                  ),
-                ],
-              )
-            ],
-          ),
+                const SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: incrementCounter,
+                  child: const Icon(Icons.add),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
