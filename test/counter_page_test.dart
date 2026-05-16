@@ -12,6 +12,7 @@ testWidgets('Counter Increment', (WidgetTester tester)async {
 
 
   expect(find.text('0'), findsOneWidget);
+  expect(find.text('1'), findsNothing);
 
   // tap the '+' icon and trigger a frame
   await tester.tap(find.byIcon(Icons.add));

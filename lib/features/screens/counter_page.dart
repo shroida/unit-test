@@ -10,6 +10,7 @@ class CounterPage extends StatefulWidget {
 
 class _CounterPageState extends State<CounterPage> {
   int counter = 0;
+  TextEditingController counterController = TextEditingController();
 
   void incrementCounter() {
     setState(() {
@@ -35,6 +36,19 @@ class _CounterPageState extends State<CounterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              TextField(
+                controller: counterController,
+                decoration: const InputDecoration(
+                  labelText: 'Enter Counter Value',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(() {
+                    counter = int.tryParse(value) ?? 0;
+                  });
+                },
+              ),
               const Text(
                 'Counter Value',
                 style: TextStyle(fontSize: 24),
