@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unit_widget_test/features/screens/my_home_page.dart';
+import 'package:unit_widget_test/features/screens/counter_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Flutter Demo Home Page'),
         ),
-        body: MyHomePage()
+        body: CounterPage()
       ),
     );
   }

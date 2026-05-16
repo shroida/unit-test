@@ -37,6 +37,7 @@ class _CounterPageState extends State<CounterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
+                key: const ValueKey('counterTextField'),
                 controller: counterController,
                 decoration: const InputDecoration(
                   labelText: 'Enter Counter Value',
@@ -49,6 +50,13 @@ class _CounterPageState extends State<CounterPage> {
                   });
                 },
               ),
+              const SizedBox(height: 30),
+              ElevatedButton(onPressed: (){
+                setState(() {
+                 counterController.text = (counter + 1).toString();
+                 counter = int.tryParse(counterController.text) ?? counter;
+                });
+              }, child: Text('Add')),
               const Text(
                 'Counter Value',
                 style: TextStyle(fontSize: 24),
